@@ -1,7 +1,12 @@
 <template>
   <div class="app">
-    <MyHeader></MyHeader>
-    <MyGoods></MyGoods>
+    <MyHeader title="购物车" :background="'black'" color="gold"></MyHeader>
+    <MyGoods
+      v-for="item in list"
+      :key="item.goods_id"
+      :item="item"
+      :list="list"
+    ></MyGoods>
     <MyFooter></MyFooter>
   </div>
 </template>
@@ -15,6 +20,22 @@ export default {
     MyHeader,
     MyGoods,
     MyFooter
+  },
+  data () {
+    return {
+      list: []
+    }
+  },
+  created () {
+    this.getList()
+  },
+  methods: {
+    async getList () {
+      const res = await this.$axios({ url: '/api/cart' })
+      console.log(res)
+      this.list = res.data.list
+      console.log(this.list)
+    }
   }
 }
 </script>

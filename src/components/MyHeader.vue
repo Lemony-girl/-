@@ -1,10 +1,22 @@
 <template>
-  <div class="my-header">购物车案例</div>
+  <div class="my-header" :style="{ background, color }">
+    {{ title }}
+  </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    background: String,
+    title: {
+      type: String,
+      default: '标题'
+    },
+    color: {
+      type: String,
+      default: 'gold'
+    }
+  }
 }
 </script>
 

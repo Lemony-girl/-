@@ -2,28 +2,43 @@
   <div class="my-goods-item">
     <div class="left">
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="input" />
-        <label class="custom-control-label" for="input">
-          <img
-            src="http://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-            alt=""
-          />
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          :id="item.goods_id"
+          v-model="item.goods_state"
+        />
+        <label class="custom-control-label" :for="item.goods_id">
+          <img :src="item.goods_img" alt="" />
         </label>
       </div>
     </div>
     <div class="right">
-      <div class="top">商品名字</div>
+      <div class="top">{{ item.goods_name }}</div>
       <div class="bottom">
-        <span class="price">¥ 100</span>
-        <span> 数量组件 </span>
+        <span class="price">¥ {{ item.goods_price }}</span>
+        <span> <MyCount :item="item"></MyCount> </span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import MyCount from '@/components/MyCount.vue'
 export default {
-
+  components: {
+    MyCount
+  },
+  props: {
+    list: {
+      type: Array,
+      required: true
+    },
+    item: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
