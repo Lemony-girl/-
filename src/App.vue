@@ -7,7 +7,7 @@
       :item="item"
       :list="list"
     ></MyGoods>
-    <MyFooter></MyFooter>
+    <MyFooter :list="list"></MyFooter>
   </div>
 </template>
 
@@ -43,5 +43,8 @@ export default {
 <style scoped>
 .app {
   padding: 50px 0;
+  box-sizing: border-box;
+  max-height: 100vh;
+  overflow: auto;
 }
 </style>
